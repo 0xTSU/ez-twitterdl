@@ -15,7 +15,7 @@ class pageCrawler():
 
     def buildPage(self):
         options = webdriver.FirefoxOptions()
-        options.headless = False
+        options.headless = True
         #profile = webdriver.FirefoxProfile(self.profile)
         driver = webdriver.Firefox(firefox_profile="xla56yi1.default-release-1621240391341", 
                                     options=options, executable_path="geckodriver.exe")
@@ -26,7 +26,7 @@ class pageCrawler():
             tweets = driver.find_elements_by_xpath('//div[@data-testid="tweet"]')
             self.appendToList(tweets)
             driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
-            time.sleep(3)
+            time.sleep(1)
             after = driver.execute_script('return document.body.scrollHeight')
             if before == after:
                 break
