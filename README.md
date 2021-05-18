@@ -7,6 +7,10 @@ Mira heavily relies on the fact that you have a firefox profile that is signed i
 
 ### Dependencies
 `selenium`
+
+
 `requests`
+
+
 `geckodriver`
 
