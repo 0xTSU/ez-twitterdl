@@ -7,10 +7,5 @@ It heavily relies on the fact that you have a firefox profile that is signed int
 
 ### Dependencies
 `selenium`
-
-
-`requests`
-
-
 `geckodriver`
 
