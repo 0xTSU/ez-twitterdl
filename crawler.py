@@ -21,15 +21,20 @@ class pageCrawler():
                                     options=options, executable_path="geckodriver.exe")
         driver.get(self.link)
         before = driver.execute_script('return document.body.scrollHeight')
-
+        pastnumber = 0
+        number = 0
         while True:
-            tweets = driver.find_elements_by_xpath('//div[@data-testid="tweet"]')
+            tweets = driver.find_elements_by_xpath('//img[@alt="Image"]')
             self.appendToList(tweets)
             driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
-            time.sleep(1)
+            time.sleep(0.3)
             after = driver.execute_script('return document.body.scrollHeight')
             if before == after:
-                break
+                pastnumber += 1
+                if pastnumber == number:
+                    break
+            else:
+                number += 1
             before = after
 
     def appendToList(self, list):
@@ -40,7 +45,7 @@ class pageCrawler():
             image_link = " "
 
             try:
-                image = tweet.find_element_by_xpath('./div[2]/div[2]/div[2]//img').get_attribute('src')
+                image = tweet.get_attribute('src')
                 image_link_index = image.split('\n')
                 for i in image_link_index:
                     if i.find('&name=') > 0:
